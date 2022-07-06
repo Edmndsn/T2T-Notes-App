@@ -3,6 +3,7 @@ import Editor from "./Editor";
 import Sidebar from "./Sidebar";
 import Split from "react-split";
 import { nanoid } from "nanoid";
+import './Notes.css'
 
 export default function Notes() {
   const [notes, setNotes] = React.useState(

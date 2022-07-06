@@ -1,9 +1,11 @@
 import React from "react";
 import ReactMde from "react-mde";
 import Showdown from "showdown";
+import { getDefaultToolbarCommands } from "react-mde";
 
 export default function Editor({ currentNote, updateNote }) {
   const [selectedTab, setSelectedTab] = React.useState("write");
+  const commands = getDefaultToolbarCommands();
 
   const converter = new Showdown.Converter({
     tables: true,
@@ -13,7 +15,7 @@ export default function Editor({ currentNote, updateNote }) {
   });
 
   return (
-    <section className="pane editor">
+    <section className="pane-editor">
       <ReactMde
         value={currentNote.body}
         onChange={updateNote}
@@ -24,6 +26,7 @@ export default function Editor({ currentNote, updateNote }) {
         }
         minEditorHeight={80}
         heightUnits="vh"
+        toolbarCommands={commands}
       />
     </section>
   );
