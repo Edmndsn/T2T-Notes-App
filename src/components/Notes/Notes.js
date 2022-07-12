@@ -1,29 +1,47 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Editor from "./Editor";
 import Sidebar from "./Sidebar";
 import Split from "react-split";
 import { nanoid } from "nanoid";
-import './Notes.css'
+import "./Notes.css";
+import { useNavigate } from "react-router-dom";
+import chevron from "../../images/chevron.png";
 
 export default function Notes() {
   const [notes, setNotes] = React.useState(
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
-  const [currentNoteId, setCurrentNoteId] = React.useState(
+
+  const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
   );
 
-  React.useEffect(() => {
+  const [displaySidebar, setDisplaySidebar] = useState(true);
+
+  const navigate = useNavigate();
+  const date = new Date();
+
+  useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
+    if (notes.length > 0) {
+      navigate(`${findCurrentNote().id}`);
+    }
+    if (notes.length === 0) {
+      navigate("");
+    }
   }, [notes]);
 
   function createNewNote() {
     const newNote = {
       id: nanoid(),
-      body: "# Type your markdown note's title here",
+      title: `Note #${notes.length + 1}`,
+      body: "Compose an epic...",
+      date: `${date}`,
     };
     setNotes(prevNotes => [newNote, ...prevNotes]);
     setCurrentNoteId(newNote.id);
+    // navigate(`${notes.id}`);
   }
 
   function updateNote(text) {
@@ -54,21 +72,39 @@ export default function Notes() {
       }) || notes[0]
     );
   }
+
   return (
     <>
       {notes.length > 0 ? (
-        <Split sizes={[30, 70]} direction="horizontal" className="split">
-          <Sidebar
-            notes={notes}
-            currentNote={findCurrentNote()}
-            setCurrentNoteId={setCurrentNoteId}
-            newNote={createNewNote}
-            deleteNote={deleteNote}
-          />
-          {currentNoteId && notes.length > 0 && (
-            <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
-          )}
-        </Split>
+        <>
+          <div>
+            <button
+              className={`chevron ${!displaySidebar ? "" : "closed"}`}
+              onClick={() => setDisplaySidebar(prevState => !prevState)}
+            >
+              <img
+                src={chevron}
+                className={!displaySidebar ? "closed" : ""}
+                alt=""
+              />
+            </button>
+          </div>
+          <Split sizes={[30, 70]} direction="horizontal" className="split">
+            <Sidebar
+              notes={notes}
+              currentNote={findCurrentNote()}
+              setCurrentNoteId={setCurrentNoteId}
+              currentNoteId={currentNoteId}
+              newNote={createNewNote}
+              deleteNote={deleteNote}
+              displaySidebar={displaySidebar}
+            />
+
+            {currentNoteId && notes.length > 0 && (
+              <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
+            )}
+          </Split>
+        </>
       ) : (
         <div className="no-notes">
           <h1>You have no notes</h1>

@@ -1,17 +1,132 @@
-import React from 'react';
-import './Contact.css';
+import React from "react";
+import "./Contact.css";
+import { useState, useEffect } from "react";
 
 export default function Contact() {
+  const [details, setDetails] = useState({
+    name: "",
+    email: "",
+    title: "",
+    message: "",
+  });
+
+  const [isError, setIsError] = useState({
+    name: false,
+    email: false,
+    success: false,
+  });
+
+  function nameChecker() {
+    if (details.name !== "")
+      setIsError(prevError => ({
+        ...prevError,
+        name: !/^[a-z ,.'-]+$/i.test(details.name),
+      }));
+  }
+
+  function emailChecker() {
+    if (details.email !== "")
+      setIsError(prevError => ({
+        ...prevError,
+        email: !/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(details.email),
+      }));
+  }
+
+  useEffect(() => {
+    nameChecker();
+    emailChecker();
+  }, [details]);
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setDetails(prevDetails => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!isError.name && !isError.email) {
+      setDetails({
+        name: "",
+        email: "",
+        title: "",
+        message: "",
+      });
+      setIsError({
+        name: false,
+        email: false,
+        success: true,
+      });
+    }
+  }
+
   return (
-    <div className='contact-container'>
-      <h3>Contact</h3>
-      <form>
-        <input type='text' placeholder='Name*'></input>
-        <input type='email' placeholder='Email*'></input>
-        <input type='title' placeholder='Title*'></input>
-        <input type='your-message' placeholder='Your Message*'></input>
-        <button>Post Comment</button>
+    <div className="contact-page">
+      <form onSubmit={event => handleSubmit(event)}>
+        <div className="contact-container">
+          <h2 className="span-two">Contact</h2>
+          <div className="form-element">
+            <div className="label-container">
+              <label htmlFor="name">Name*</label>
+              <p className={isError.name ? "visible" : ""}>
+                Name must not contain numbers
+              </p>
+            </div>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={details.name}
+              onChange={handleChange}
+              required
+            ></input>
+          </div>
+          <div className="form-element">
+            <div className="label-container">
+              <label htmlFor="email">Email*</label>
+              <p className={isError.email ? "visible" : ""}>
+                "Email must be valid
+              </p>
+            </div>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={details.email}
+              onChange={handleChange}
+              required
+            ></input>
+          </div>
+          <div className="form-element span-two">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={details.title}
+              onChange={handleChange}
+              required
+            ></input>
+          </div>
+          <div className="form-element span-two">
+            <label htmlFor="your-mesage">Your Message</label>
+            <p className={isError.message ? "visible" : ""}></p>
+            <textarea
+              type="text"
+              name="message"
+              id="message"
+              value={details.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+          <button className="submit-message-button" type="submit">
+            Submit Message
+          </button>
+        </div>
       </form>
-      </div>
-  )
+    </div>
+  );
 }

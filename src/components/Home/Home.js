@@ -3,7 +3,7 @@ import homeImage from "../../images/home-image.png";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
 
-function Home() {
+export default function Home() {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +15,7 @@ function Home() {
           dui. Lorem ipsum dolor sit amet, consectetur adipisce placerat mauris
           nisl. Proin vitae urna eu sem pellentesque laoreet.
         </h5>
-        <img src={homeImage} alt="home-image" />
+        <img src={homeImage} alt="home" />
         <button
           className="navto-notes-button"
           onClick={() => navigate("/notes")}
@@ -26,5 +26,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

@@ -1,10 +1,10 @@
 .home-container {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100vh;  
-
+  height: auto;
 }
 
 .home-content {
@@ -15,6 +15,7 @@
   align-items: center;
   flex-direction: column;
   margin: 20px;
+  margin-bottom: 350px;
 }
 
 .navto-notes-button {

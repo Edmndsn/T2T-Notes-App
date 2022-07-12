@@ -4,6 +4,7 @@ nav {
   z-index: 1;
   min-height:  100%;
   min-width: 258px;   
+  border-right: 2px solid #e7e7e9;
 }
 
 .logo-container {
@@ -35,8 +36,7 @@ nav {
   font-size: 16px;
   line-height: 27px;
   color: #898989;
-  transition: color 0.4s;
-  
+  transition: color 0.4s;  
 }
 
 .nav-text a.active {

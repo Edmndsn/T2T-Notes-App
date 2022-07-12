@@ -6,21 +6,34 @@
 
 .pane {
   overflow-y: auto;
-  /* padding: 10px; */
+  
 }
 
 .pane-sidebar {
-  min-width: 300px;
-  height: 100vh;
-  overflow-x: hidden;
+  min-width: 340px;
+  border-right: 2px solid #e7e7e9;
 }
 
-.sidebar--note {
-  /* display: flex; */
+section.pane-sidebar.hidden {
+  display: none;
+}
+
+.notes-container::-webkit-scrollbar {
+  width: 10px;
+  scrollbar-width: thin;
+}
+
+.notes-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+}
+
+.notes-container::-webkit-scrollbar-thumb {
+  background-color: #e7e7e9;
 }
 
 .sidebar--header {
-  display: flex;
+  display: grid;
+  place-content: center;
   justify-content: space-around;
   align-items: center;
 }
@@ -29,7 +42,7 @@
   font-size: 1.75rem;
 }
 
-.new-note {
+.create-note-btn {
   cursor: pointer;
   background-color: #ec7160;
   border: none;
@@ -45,16 +58,22 @@
 
 .pane-sidebar > h5 {
   font-size: 13px;
+  font-weight: 300;
   color: #ec7160;
   padding: 8px;
   padding-left: 1rem;
-  border-top: 1px solid #e7e7e9;
-  border-bottom: 1px solid #e7e7e9;
+  border-top: 2px solid #e7e7e9;
+  border-bottom: 2px solid #e7e7e9;
+}
+
+.notes-container {
+  overflow-x: scroll;
+  max-height: 73vh;
 }
 
 .first-note {
   cursor: pointer;
-  background-color: #ec7160;
+  background-color: #4a4e74;
   border: none;
   color: white;
   border-radius: 3px;
@@ -63,16 +82,35 @@
 
 .editor {
   width: 80%;
-  height: 100vh;
+  border: 2px solid #e7e7e9;
+  padding: 10px;
 }
 
 .title {
   overflow: hidden;
-  width: 100%;
   cursor: pointer;
+  max-height: 220px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  color: #303030;
+}
+
+.note-date {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #898989;
 }
 
 .title--delete {
@@ -91,37 +129,31 @@
 }
 
 .text-snippet {
-  max-width: 350px;
-  height: 125px;
-  padding-inline: 5px;
-  font-size: 0.8rem;
+  max-width: 75ch;
+  font-size: 13px;
   font-weight: 400;
-  line-height: 1.2rem;
-  color: #303030;
+  line-height: 20px;
+  color: #898989;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 10px;
 }
 
 .selected-note {
   background-color: #f6f6f6;
   border-radius: 8px;
+  margin-left: 15px;
 }
 
 .selected-note .text-snippet {
   color: #898989;
-  font-weight: 700;
 }
 
 .gutter {
   background-color: #eee;
-  background-repeat: no-repeat;
-  background-position: 50%;
 }
 
 .gutter.gutter-horizontal {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+  background-color: white;
 }
 
 .gutter.gutter-horizontal:hover {
@@ -131,6 +163,7 @@
 .split {
   display: flex;
   width: 100%;
+  height: 100vh;
 }
 
 .no-notes {
@@ -147,10 +180,14 @@
   display: none;
   background: none;
   border: none;
+  align-self: flex-end;
+  padding-bottom: 10px;
 }
 
 .title:hover > .delete-btn {
-  display: block;
+  display: flex;
+  position: relative;
+  bottom: 5px;
 }
 
 .trash-icon {
@@ -201,11 +238,14 @@
 
 .pane-editor {
   min-width: 400px;
-  height: 900px;
   padding-top: 60px;
+  margin-right: 20px;
+  margin-left: 15px;
 }
 
-.mde-textarea-wrapper {
+.mde-header {
+  background-color: white;
+  border-bottom: 2px solid #d2d2d2;
 }
 
 .mde-header .mde-tabs button {
@@ -217,3 +257,42 @@
   color: white;
   background-color: rgb(236, 113, 96, 0.5);
 }
+
+textarea.mde-text:focus-visible {
+  outline: 1px solid #898989;
+}
+
+.mde-preview {
+  min-height: 80vh !important;
+}
+
+/* compare with previous and online */
+.chevron {
+  cursor: pointer;
+  height: 28px;
+  max-width: 28px;
+  border-radius: 50px;
+  background-color: white;
+  border: 2px solid #d2d2d2;
+  cursor: pointer;
+  position: absolute;
+  top: 67px;
+  left: 242.8px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.chevron:hover {
+  background-color: rgb(236, 113, 96, 0.5);
+}
+
+.chevron img {
+  width: 80%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.chevron img.closed {
+  transform: rotate(180deg);
+}
+
