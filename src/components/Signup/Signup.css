@@ -1,0 +1,145 @@
+/*make responseive*/
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.login-left {
+  height: 100%;
+  width: 50vw;
+  background: #ec7160;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 289px;
+  align-items: center;
+}
+
+.app-logo {
+  width: 78px;
+  background-color: aliceblue;
+  margin-right: 475px;
+}
+
+.main-signup-image {
+  width: 652.63px;
+  height: 385.67px;
+}
+
+.login-right {
+  height: 100%;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+}
+
+.login-right-contents {
+  width: 426px;
+}
+
+.auth-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 426px;
+  gap: 25px;
+}
+
+.signup-text {
+  font-size: 18px;
+  line-height: 28px;
+  color: #8692a6;
+}
+
+.account-button {
+  height: 54.58px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 0.802632px solid rgba(82, 76, 76, 0.38);
+  border-radius: 8.02632px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.divider {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-align: center;
+  grid-column: span 2;
+}
+
+.divider p {
+  background-color: white;
+  position: relative;
+  display: inline-block;
+}
+
+.divider p::before {
+  left: 100%;
+}
+
+.divider p::after {
+  right: 100%;
+}
+
+.divider p:before,
+.divider p:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-bottom: 1px solid;
+  width: 426px;
+  margin: 0 10px;
+  background-color: rgba(82, 76, 76, 0.38);
+  opacity: 0.15;
+}
+
+.form-element label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #696f79;
+  padding-bottom: 8px;
+}
+
+.form-element input {
+  grid-column: span 2;
+  width: 100%;
+  height: 64px;
+  background-color: #ffffff;
+  border: 0.802632px solid rgba(82, 76, 76, 0.38);
+  border-radius: 8.02632px;
+}
+
+.form-element input:focus-visible {
+  outline: 1px solid #898989;
+}
+
+.signup-button {
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #ec7160;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  height: 64px;
+  width: 100%;
+  margin-top: 25px;
+}
+
+.sign-up {
+  width: 100%;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.sign-up a {
+  text-decoration: none;
+  color: #ec7160;
+}
