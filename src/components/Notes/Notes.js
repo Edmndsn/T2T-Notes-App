@@ -7,11 +7,26 @@ import { nanoid } from "nanoid";
 import "./Notes.css";
 import { useNavigate } from "react-router-dom";
 import chevron from "../../images/chevron.png";
+import { db } from "../../firebase-config";
+import { useAuth } from "../Context/AuthContext";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+  setDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  serverTimestamp,
+} from "firebase/firestore";
 
 export default function Notes() {
-  const [notes, setNotes] = React.useState(
-    () => JSON.parse(localStorage.getItem("notes")) || []
-  );
+  const { currentUser } = useAuth();
+  const userId = currentUser.uid;
+  const [notes, setNotes] = useState(() => []);
 
   const [currentNoteId, setCurrentNoteId] = useState(
     (notes[0] && notes[0].id) || ""
@@ -20,10 +35,21 @@ export default function Notes() {
   const [displaySidebar, setDisplaySidebar] = useState(true);
 
   const navigate = useNavigate();
-  const date = new Date();
+
+  // look to make more concise date format
+
+  const notesRef = collection(db, `${userId}-notes`);
+  const orderedNotes = query(notesRef, orderBy("createdAt", "desc"));
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    onSnapshot(orderedNotes, async () => {
+      const data = await getDocs(orderedNotes);
+      const notesArray = data.docs.map(doc => doc.data());
+      setNotes(notesArray);
+    });
+  }, []);
+
+  useEffect(() => {
     if (notes.length > 0) {
       navigate(`${findCurrentNote().id}`);
     }
@@ -32,38 +58,41 @@ export default function Notes() {
     }
   }, [notes]);
 
-  function createNewNote() {
+  async function createNewNote() {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    const date = new Date();
     const newNote = {
       id: nanoid(),
       title: `Note #${notes.length + 1}`,
       body: "Compose an epic...",
       date: `${date}`,
+      createdAt: serverTimestamp(),
     };
-    setNotes(prevNotes => [newNote, ...prevNotes]);
+    await setDoc(doc(db, `${userId}-notes`, newNote.id), newNote);
     setCurrentNoteId(newNote.id);
     // navigate(`${notes.id}`);
   }
 
-  function updateNote(text) {
-    // Put the most recently-modified note at the top
-    setNotes(oldNotes => {
-      const newArray = [];
-      for (let i = 0; i < oldNotes.length; i++) {
-        const oldNote = oldNotes[i];
-        if (oldNote.id === currentNoteId) {
-          newArray.unshift({ ...oldNote, body: text });
-        } else {
-          newArray.push(oldNote);
-        }
-      }
-      return newArray;
-    });
-  }
+  const updateNote = async text => {
+    const userDoc = doc(db, `${userId}-notes`, currentNoteId);
+    const update =
+      typeof text === "string" ? { body: text } : { title: text.target.value };
+    await updateDoc(userDoc, update);
+  };
 
-  function deleteNote(event, noteId) {
+
+  // not working - logs out after deleting
+  const deleteNote = async (event, noteId) => {
     event.stopPropagation();
-    setNotes(oldNotes => oldNotes.filter(note => note.id !== noteId));
-  }
+    const userDoc = doc(db, `${userId}-notes`, noteId);
+    await deleteDoc(userDoc);
+  };
 
   function findCurrentNote() {
     return (

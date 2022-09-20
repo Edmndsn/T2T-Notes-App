@@ -4,8 +4,6 @@ import Showdown from "showdown";
 import { getDefaultToolbarCommands } from "react-mde";
 import "react-mde/lib/styles/css/react-mde-toolbar.css";
 
-
-
 export default function Editor({ currentNote, updateNote }) {
   const [selectedTab, setSelectedTab] = React.useState("write");
   const commands = getDefaultToolbarCommands();

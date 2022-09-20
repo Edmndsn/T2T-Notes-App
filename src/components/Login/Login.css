@@ -1,61 +1,78 @@
-/*make responseive*/
 .login-container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-.login-left {
-  height: 100%;
-  width: 50vw;
+.image-half {
   background: #ec7160;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  padding-bottom: 289px;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.image-half-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+  margin: 0rem 2rem;
 }
 
 .app-logo {
-  width: 78px;
+  /* width: 78px; */
   background-color: aliceblue;
-  margin-right: 475px;
 }
 
-.main-login-image {
-  width: 575px;
-  height: 446px;
+.landing-image {
+  /* width: 100%; */
+  /* width: auto; */
+  /* height: 32vh; */
+  /* min-height: 10vh; */
+  /* min-width: 20vh; */
+  /* background-position: center center; */
 }
 
-.login-right {
+.form-half {
+  width: 100%;
   height: 100%;
-  width: 50vw;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 300px;
+  flex-direction: column;
+  margin: 0rem 2rem;
 }
 
 .login-right-contents {
-  width: 426px;
 }
 
-.auth-form {
+.login-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 426px;
   gap: 25px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 40px 15px;
+  height: 100%; */
 }
 
 .account-button {
-  height: 54.58px;
   margin-top: 20px;
   background-color: #ffffff;
-  border: 0.802632px solid rgba(82, 76, 76, 0.38);
+  border: 1px solid rgba(82, 76, 76, 0.38);
   border-radius: 8.02632px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 .divider {
@@ -92,12 +109,29 @@
   opacity: 0.15;
 }
 
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-right: 18px; */
+}
+
+.form-element p {
+  font-size: 13px;
+  color: #ec7160;
+  font-style: italic;
+  opacity: 1;
+}
+
+.form-element p.visible {
+  opacity: 1;
+}
+
 .form-element label {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #696f79;
-  padding-bottom: 8px;
 }
 
 .form-element input {

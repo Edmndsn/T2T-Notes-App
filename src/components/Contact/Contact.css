@@ -13,12 +13,12 @@
   gap: 35px;
 }
 
-.label-container {
+/* .label-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 18px;
-}
+} */
 
 .form-element label {
   display: flex;

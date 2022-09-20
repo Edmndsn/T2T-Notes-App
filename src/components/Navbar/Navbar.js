@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import appLogo from "../../images/app-logo.png";
 import "./Navbar.css";
-
+import { useAuth } from "../Context/AuthContext";
 export default function Navbar() {
-  
+  const { currentUser, logout } = useAuth();
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit() {
+    setErrorMessage("");
+    try {
+      await logout();
+      navigate("/login");
+    } catch {
+      setErrorMessage("Log out failed");
+    }
+  }
+console.log(currentUser)
   return (
     <nav>
       <div className="logo-container">
@@ -12,9 +25,12 @@ export default function Navbar() {
       </div>
       <div className="nav-text">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="notes">Notes</NavLink>
-        <NavLink to="contact">Contact</NavLink>
+        <NavLink to="/notes">Notes</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </div>
+      <button className="logout-button" onClick={handleSubmit}>
+        Log out
+      </button>
     </nav>
   );
 }

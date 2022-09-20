@@ -1,6 +1,8 @@
 import React from "react";
 import "./Contact.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { db } from "../../firebase-config";
+import { addDoc, collection } from "firebase/firestore";
 
 export default function Contact() {
   const [details, setDetails] = useState({
@@ -15,6 +17,9 @@ export default function Contact() {
     email: false,
     success: false,
   });
+
+  // const [loading, setLoading] = useState(false);
+  const contactRef = collection(db, "contact");
 
   function nameChecker() {
     if (details.name !== "")
@@ -45,9 +50,10 @@ export default function Contact() {
     }));
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = async event => {
     event.preventDefault();
     if (!isError.name && !isError.email) {
+      await addDoc(contactRef, details);
       setDetails({
         name: "",
         email: "",
@@ -59,8 +65,9 @@ export default function Contact() {
         email: false,
         success: true,
       });
+      // setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="contact-page">
@@ -87,7 +94,7 @@ export default function Contact() {
             <div className="label-container">
               <label htmlFor="email">Email*</label>
               <p className={isError.email ? "visible" : ""}>
-                "Email must be valid
+                Please enter a valid Email address
               </p>
             </div>
             <input

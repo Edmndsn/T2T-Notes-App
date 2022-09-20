@@ -1,17 +1,74 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import mainSignupImage from "../../images/signup-image.png";
 import appLogo from "../../images/app-logo.png";
 import googleLogo from "../../images/google-logo.png";
 import facebookLogo from "../../images/facebook-logo.png";
 import "./Signup.css";
+import { useAuth } from "../Context/AuthContext.js";
+import App from "../../App";
 
 export default function Signup() {
+  const { signup } = useAuth();
+  const navigate = useNavigate();
+  const [details, setDetails] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [isError, setIsError] = useState({
+    email: false,
+    password: false,
+  });
+  
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function emailChecker() {
+    if (details.email !== "")
+      setIsError(prevError => ({
+        ...prevError,
+        email: !/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/.test(details.email),
+      }));
+  }
+
+  function passwordChecker() {
+    if (details.password !== "")
+      setIsError(prevError => ({
+        ...prevError,
+        password: details.password.length < 6,
+      }));
+  }
+
+  useEffect(() => {
+    emailChecker();
+    passwordChecker();
+  }, [details]);
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setDetails(prevDetails => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    if (!errorMessage.email && !errorMessage.password)
+      try {
+        setErrorMessage("");
+        await signup(details.email, details.password);
+        navigate("/", { replace: true });
+      } catch {
+        setErrorMessage("Sign up failed, please try again");
+      }
+  }
+
   return (
     <div className="login-container">
       <div className="login-left">
-        <img className="app-logo" src={appLogo} />
-        <img className="main-signup-image" src={mainSignupImage} />
+        <img className="app-logo" src={appLogo} alt="" />
+        <img className="main-signup-image" src={mainSignupImage} alt="" />
       </div>
       <div className="login-right">
         <div className="login-right-contents">
@@ -22,30 +79,60 @@ export default function Signup() {
           </p>
           <form className="auth-form">
             <button className="account-button">
-              <img src={googleLogo} />
+              <img src={googleLogo} alt="google" />
               Google Account
             </button>
             <button className="account-button">
-              <img src={facebookLogo} />
+              <img src={facebookLogo} alt="facebook" />
               Facebook Account
             </button>
             <div className="divider">
               <p>Or</p>
             </div>
             <div className="form-element span-two">
-              <label htmlFor="email">Email address</label>
-              <input className="span-two"></input>
+              <div className="label-container">
+                <label htmlFor="email">Email address</label>
+                <p className={isError.email || errorMessage ? "visible" : ""}>
+                  {errorMessage || "Email address invalid"}
+                </p>
+              </div>
+              <input
+                className="span-two"
+                type="text"
+                name="email"
+                id="email"
+                value={details.email}
+                onChange={handleChange}
+                required
+              ></input>
             </div>
             <div className="form-element span-two">
-              <label htmlFor="password">Password</label>
-              <input className="span-two"></input>
+              <div className="label-container">
+                <label htmlFor="password">Password</label>
+                <p
+                  className={isError.password || errorMessage ? "visible" : ""}
+                >
+                  {errorMessage || "Password must be atleast 6 characters long"}
+                </p>
+              </div>
+              <input
+                className="span-two"
+                type="password"
+                name="password"
+                id="password"
+                value={details.password}
+                onChange={handleChange}
+                required
+              ></input>
             </div>
 
-            <button className="signup-button span-two">Sign up</button>
+            <button className="signup-button span-two" onClick={handleSubmit}>
+              Sign up
+            </button>
           </form>
           <p className="sign-up">
             Already have an account?&nbsp;
-            <Link to="/signup">Log in here</Link>
+            <Link to="/login">Log in here</Link>
           </p>
         </div>
       </div>

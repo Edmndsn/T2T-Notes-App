@@ -1,5 +1,5 @@
 /*make responseive*/
-.login-container {
+/* .login-container {
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -14,6 +14,7 @@
   justify-content: space-around;
   padding-bottom: 289px;
   align-items: center;
+  overflow: hidden;
 }
 
 .app-logo {
@@ -22,17 +23,21 @@
   margin-right: 475px;
 }
 
-.main-signup-image {
-  width: 652.63px;
-  height: 385.67px;
+.main-login-image {
+  width: auto;
+  height: 32vh;
+  min-height: 10vh;
+  min-width: 20vh;
+  background-position: center center;
 }
 
 .login-right {
-  height: 100%;
+  height: 65%;
   width: 50vw;
   display: flex;
   justify-content: center;
   margin-top: 300px;
+  overflow: hidden;
 }
 
 .login-right-contents {
@@ -50,6 +55,24 @@
   font-size: 18px;
   line-height: 28px;
   color: #8692a6;
+}
+
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 18px;
+}
+
+.form-element p {
+  font-size: 13px;
+  color: #ec7160;
+  font-style: italic;
+  opacity: 0;
+}
+
+.form-element p.visible {
+  opacity: 1;
 }
 
 .account-button {
@@ -97,12 +120,18 @@
   opacity: 0.15;
 }
 
+.label-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 18px;
+}
+
 .form-element label {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-  color: #696f79;
-  padding-bottom: 8px;
+  color: #696f79;  
 }
 
 .form-element input {
@@ -136,10 +165,9 @@
   margin-top: 40px;
   display: flex;
   justify-content: center;
-  
 }
 
 .sign-up a {
   text-decoration: none;
   color: #ec7160;
-}
+} */
