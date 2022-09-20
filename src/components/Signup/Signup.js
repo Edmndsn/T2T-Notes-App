@@ -20,7 +20,7 @@ export default function Signup() {
     email: false,
     password: false,
   });
-  
+
   const [errorMessage, setErrorMessage] = useState("");
 
   function emailChecker() {
@@ -66,18 +66,21 @@ export default function Signup() {
 
   return (
     <div className="login-container">
-      <div className="login-left">
-        <img className="app-logo" src={appLogo} alt="" />
-        <img className="main-signup-image" src={mainSignupImage} alt="" />
+      <div className="image-half">
+        <div className="image-half-content">
+          <img src={appLogo} className="app-logo" alt="logo" />
+          <img className="landing-image" src={mainSignupImage} alt="landing" />
+        </div>
       </div>
-      <div className="login-right">
-        <div className="login-right-contents">
-          <h1 className="span-two">Sign up</h1>
+
+      <div className="form-half">
+        <div className="form-container">
+          <h1 className="login-title">Sign up</h1>
           <p className="signup-text">
             If you are already a member you can log in with your email address
             and password.
           </p>
-          <form className="auth-form">
+          <form className="login-form">
             <button className="account-button">
               <img src={googleLogo} alt="google" />
               Google Account
@@ -89,6 +92,7 @@ export default function Signup() {
             <div className="divider">
               <p>Or</p>
             </div>
+
             <div className="form-element span-two">
               <div className="label-container">
                 <label htmlFor="email">Email address</label>
@@ -126,7 +130,7 @@ export default function Signup() {
               ></input>
             </div>
 
-            <button className="signup-button span-two" onClick={handleSubmit}>
+            <button className="login-button span-two" onClick={handleSubmit}>
               Sign up
             </button>
           </form>

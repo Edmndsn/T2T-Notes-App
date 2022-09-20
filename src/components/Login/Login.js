@@ -23,7 +23,7 @@ export default function Login() {
   // function validateForm() {
   //   return details.email.length > 0 && details.password.length > 0;
   // }
-console.log(error.code)
+
   function handleChange(event) {
     const { name, value } = event.target;
     setDetails(prevDetails => ({
@@ -31,7 +31,7 @@ console.log(error.code)
       [name]: value,
     }));
   }
-  console.log(errorMessage);
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
@@ -49,9 +49,6 @@ console.log(error.code)
       }
     }
   }
-
-
-  
 
   return (
     <div className="login-container">
@@ -78,7 +75,7 @@ console.log(error.code)
             </div>
             <div className="form-element span-two">
               <div className="label-container">
-                <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email address</label>
                 <p
                   className={`${
                     errorMessage === "User not found" ? "visible" : ""
