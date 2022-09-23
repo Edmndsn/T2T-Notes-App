@@ -174,3 +174,25 @@
   text-decoration: none;
   color: #ec7160;
 }
+
+@media only screen and (max-width: 860px) {
+  .form-half {
+  padding: 1rem;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .image-half {
+  display: none;
+  }
+  .login-container {
+    display: flex;
+    justify-content: center;
+  }
+  .sign-up {
+    gap: 0.5rem;
+  }
+  .form-element p {
+    font-size: 0.6rem;
+  }
+}

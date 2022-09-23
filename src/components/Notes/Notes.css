@@ -1,6 +1,12 @@
 .split {
   display: flex;
   width: 100%;
+  flex-shrink: 1;
+  /* padding: 1rem; */
+  /* padding-right: 0.5rem; */
+  padding-bottom: 1rem;
+  min-width: none;
+  height: 94.6vh;
 }
 
 .ql-editor p,
@@ -253,14 +259,20 @@
   /* padding-top: 44px; */
   /* margin-right: 20px;
   margin-left: 15px; */
-  margin: 35px 16px 35px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 16px 30px 16px;
   width: 100%;
-  /* height: 100%; */
+  max-height: 85%;
+  flex-shrink: 1;
+  
 }
 
 .react-mde {
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
+  height: 100%;
+
 }
 
 .mde-header {
@@ -283,10 +295,26 @@ textarea.mde-text:focus-visible {
 }
 
 .mde-preview {
-  /* min-height: 80vh !important; */
+  min-height: 80vh !important;
+
 }
 
+.textarea.mde-text {
+  height: 100% !important;
+  background-color: black;
+}
+
+.mde-text {
+  max-height: 650px !important;
+}
+
+/* .mde-textarea-wrapper {
+  background: blue !important;
+  height: 100% !important;
+} */
+
 /* compare with previous and online */
+
 .chevron {
   cursor: pointer;
   height: 28px;
@@ -295,12 +323,11 @@ textarea.mde-text:focus-visible {
   background-color: white;
   border: 2px solid #d2d2d2;
   cursor: pointer;
-  position: absolute;
-  top: 67px;
-  left: 242.8px;
   display: grid;
   place-items: center;
   z-index: 2;
+  transform: rotate(180deg);
+  margin-bottom: 0.6rem;
 }
 
 .chevron:hover {

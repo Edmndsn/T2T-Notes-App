@@ -106,18 +106,6 @@ export default function Notes() {
     <>
       {notes.length > 0 ? (
         <>
-          <div>
-            <button
-              className={`chevron ${!displaySidebar ? "" : "closed"}`}
-              onClick={() => setDisplaySidebar(prevState => !prevState)}
-            >
-              <img
-                src={chevron}
-                className={!displaySidebar ? "closed" : ""}
-                alt=""
-              />
-            </button>
-          </div>
           <Split sizes={[30, 70]} direction="horizontal" className="split">
             <Sidebar
               notes={notes}
@@ -127,10 +115,15 @@ export default function Notes() {
               newNote={createNewNote}
               deleteNote={deleteNote}
               displaySidebar={displaySidebar}
-            />
+            >
+              
+              </Sidebar>
 
             {currentNoteId && notes.length > 0 && (
-              <Editor currentNote={findCurrentNote()} updateNote={updateNote} />
+              <>
+              <Editor currentNote={findCurrentNote()} updateNote={updateNote} chevron={chevron} displaySidebar={displaySidebar} setDisplaySidebar={setDisplaySidebar}/>
+            </>
+  
             )}
           </Split>
         </>

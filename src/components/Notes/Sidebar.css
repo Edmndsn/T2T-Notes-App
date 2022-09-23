@@ -1,8 +1,13 @@
 .pane-sidebar {
-  min-width: 340px;
+  width: 100%;
+  min-width: 300px;
+  /* padding: 1rem; */
   border-right: 2px solid #e7e7e9;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  /* height: 80%; */
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .pane-sidebar.hidden {
@@ -23,8 +28,8 @@
 }
 
 .sidebar--header {
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
   justify-content: space-around;
   align-items: center;
   position: sticky;
@@ -59,9 +64,11 @@
 }
 
 .notes-container {
-  overflow-x: scroll;
+  overflow-y: scroll;
   /* max-height: 73vh; */
-  height: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .first-note {
@@ -219,4 +226,51 @@
   border-top-right-radius: 2px;
   top: -7px;
   left: -2px;
+}
+
+
+@media only screen and (max-width: 560px) {
+  .split {
+    /* width: fit-content !important; */
+    margin: 0;
+    padding: 0 0.5rem 0 0!important;
+    /* height: 500px !important; */
+    /* height: 100% !important; */
+  }
+  .pane-sidebar {
+    min-width: 150px !important;
+    /* max-height: 100% !important; */
+    height: 100%;
+  }
+  /* .notes-container {
+    height: 500px !important;
+  } */
+  .title.selected-note {
+    padding: 5px;
+  }
+  .title {
+    padding: 5px;
+    margin: 0px 5px;
+  }
+  .note-title, .text-snippet, .note-date {
+  margin: 2px 0px;
+  font-size: 0.7rem;
+}
+.note-element-container {
+  margin: 5px 0px;
+}
+.delete-btn {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  padding: 2px;
+}
+
+/* .notes-container {
+  width: 100%;
+} */
+.pane-editor {
+  /* max-width: fit-content; */
+  margin: 5px 6px 10px !important;
+  /* min-width: fit-content; */
+}
 }
