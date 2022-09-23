@@ -76,10 +76,10 @@ export default function Signup() {
       <div className="form-half">
         <div className="form-container">
           <h1 className="login-title">Sign up</h1>
-          <p className="signup-text">
+          <label className="signup-text">
             If you are already a member you can log in with your email address
             and password.
-          </p>
+          </label>
           <form className="login-form">
             <button className="account-button">
               <img src={googleLogo} alt="google" />
@@ -134,10 +134,10 @@ export default function Signup() {
               Sign up
             </button>
           </form>
-          <p className="sign-up">
+          <label className="sign-up">
             Already have an account?&nbsp;
             <Link to="/login">Log in here</Link>
-          </p>
+          </label>
         </div>
       </div>
     </div>

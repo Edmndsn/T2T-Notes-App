@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0rem 2rem;
+  padding: 0rem 175px;
 }
 
 .form-container {
@@ -111,6 +111,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   /* margin-right: 18px; */
 }
 
@@ -119,6 +120,8 @@
   color: #ec7160;
   font-style: italic;
   opacity: 1;
+  margin: 0px 0px 5px;
+
 }
 
 .form-element p.visible {
@@ -129,13 +132,15 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
+  margin-bottom: 5px;
   color: #696f79;
 }
 
 .form-element input {
   grid-column: span 2;
   width: 100%;
-  height: 64px;
+  padding: 10px;
+  /* height: 100%; */
   background-color: #ffffff;
   border: 0.802632px solid rgba(82, 76, 76, 0.38);
   border-radius: 8.02632px;

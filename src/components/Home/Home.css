@@ -15,11 +15,15 @@
   align-items: center;
   flex-direction: column;
   margin: 20px;
-  margin-bottom: 350px;
 }
 
 .navto-notes-button {
-  width: 265px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem ;
+  font-size: 1rem;
+  font-weight: 500;
   height: 40px;
   background: #ec7160;
   color: white;

@@ -35,7 +35,7 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      setErrorMessage("it worked");
+      setErrorMessage("")
       // setLoading(true);
       await login(details.email, details.password);
       navigate("/");
@@ -119,9 +119,9 @@ export default function Login() {
               Login
             </button>
           </form>
-          <p className="sign-up">
+          <label className="sign-up">
             Don't have an account?&nbsp;<Link to="/signup">Sign up here</Link>
-          </p>
+          </label>
         </div>
       </div>
     </div>
