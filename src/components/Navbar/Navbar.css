@@ -83,7 +83,7 @@
     background: #f6f6f6;
     padding: 1.5rem;
     width: 100%;
-    min-width: 320px;
+    /* min-width: 320px; */
     gap: 1rem;
   }
   .mob-header {
