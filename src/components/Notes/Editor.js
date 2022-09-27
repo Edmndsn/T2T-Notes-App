@@ -39,6 +39,7 @@ export default function Editor({ currentNote, updateNote, chevron, displaySideba
           Promise.resolve(converter.makeHtml(markdown))
         }
         minEditorHeight={80}
+        minPreviewHeight={80}
         heightUnits="vh"
         toolbarCommands={commands}
       />
