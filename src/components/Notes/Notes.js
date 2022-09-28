@@ -16,6 +16,7 @@ import {
 	doc,
 	getDocs,
 	updateDoc,
+	updateDocs,
 	setDoc,
 	onSnapshot,
 	query,
@@ -26,18 +27,6 @@ import {
 export default function Notes() {
 	const { currentUser } = useAuth();
 	const userId = currentUser.uid;
-	const [notes, setNotes] = useState(() => []);
-
-	const [currentNoteId, setCurrentNoteId] = useState(
-		(notes[0] && notes[0].id) || ""
-	);
-
-	const [displaySidebar, setDisplaySidebar] = useState(true);
-
-	const navigate = useNavigate();
-
-	// look to make more concise date format
-
 	const notesRef = collection(db, `${userId}-notes`);
 	const orderedNotes = query(notesRef, orderBy("createdAt", "desc"));
 
@@ -48,37 +37,51 @@ export default function Notes() {
 			setNotes(notesArray);
 		});
 	}, []);
+	const [notes, setNotes] = useState(() => []);
 
+	const [currentNoteId, setCurrentNoteId] = useState(
+		(notes[0] && notes[0].id) || ""
+	);
+
+	const [displaySidebar, setDisplaySidebar] = useState(true);
+
+	const navigate = useNavigate();
+
+	// Change route when new note added/deleted
 	useEffect(() => {
+		updateTitle();
 		if (notes.length > 0) {
-			navigate(`${findCurrentNote().id}`);
+			navigate(notes[0].title);
 		}
 		if (notes.length === 0) {
 			navigate("");
 		}
-	}, []);
+	}, [notes]);
 
-	async function createNewNote() {
-		const options = {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-			hour: "numeric",
-			minute: "numeric",
-		};
+	const createNewNote = async () => {
 		const date = new Date().toISOString().substring(0, 10);
+		const id = nanoid();
 		const newNote = {
-			id: nanoid(),
-			title: `Note #${notes.length + 1}`,
+			id: id,
+			title: `Note-${notes.length}`,
 			body: "Write your message here...",
 			date: `${date}`,
 			createdAt: serverTimestamp(),
 		};
-		await setDoc(doc(db, `${userId}-notes`, newNote.id), newNote);
-		setCurrentNoteId(newNote.id);
-		// navigate(`${notes.id}`);
-	}
+		const firstNotes = {
+			...newNote,
+			title: `Note-${notes.length + 1}`,
+		};
+		if (notes.length === 0) {
+			await setDoc(doc(db, `${userId}-notes`, id), firstNotes);
+			setCurrentNoteId(firstNotes.id);
+		} else {
+			await setDoc(doc(db, `${userId}-notes`, id), newNote);
+			setCurrentNoteId(newNote.id);
+		}
+	};
 
+	// look at title in this, not neccesary atm
 	const updateNote = async (text) => {
 		const userDoc = doc(db, `${userId}-notes`, currentNoteId);
 		const update =
@@ -86,9 +89,18 @@ export default function Notes() {
 		await updateDoc(userDoc, update);
 	};
 
-	// not working - logs out after deleting
+	async function updateTitle(note) {
+		const colref = await doc(db, `${userId}-notes`, note.title);
+		const colupdate = colref.map((note) => {
+			return {
+				title: "hi",
+			};
+		});
+		await updateDoc(colref, colupdate);
+	}
+
 	const deleteNote = async (event, noteId) => {
-		event.stopPropagation();
+		// event.stopPropagation();
 		const userDoc = doc(db, `${userId}-notes`, noteId);
 		await deleteDoc(userDoc);
 	};
@@ -113,8 +125,8 @@ export default function Notes() {
 							currentNoteId={currentNoteId}
 							newNote={createNewNote}
 							deleteNote={deleteNote}
-							displaySidebar={displaySidebar}></Sidebar>
-
+							displaySidebar={displaySidebar}
+						/>
 						{notes.length > 0 && (
 							<>
 								<Editor
