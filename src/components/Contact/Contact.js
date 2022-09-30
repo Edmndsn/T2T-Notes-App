@@ -65,14 +65,17 @@ export default function Contact() {
 				email: false,
 				success: true,
 			});
-			// setLoading(false);
 		}
 	};
 
 	return (
 		<div className="contact-page">
-			<form onSubmit={(event) => handleSubmit(event)}>
-				<div className="contact-container">
+			<div className="contact-container">
+				<form
+					// className="contact-container"
+					className="login-form"
+					onSubmit={(event) => handleSubmit(event)}>
+					{/* <div className="contact-container"> */}
 					<h2 className="span-two">Contact</h2>
 					<div className="form-element">
 						<div className="label-container">
@@ -105,7 +108,9 @@ export default function Contact() {
 							required></input>
 					</div>
 					<div className="form-element span-two">
-						<label htmlFor="title">Title</label>
+						<div className="label-container">
+							<label htmlFor="title">Title</label>
+						</div>
 						<input
 							type="text"
 							name="title"
@@ -115,8 +120,10 @@ export default function Contact() {
 							required></input>
 					</div>
 					<div className="form-element span-two">
-						<label htmlFor="your-mesage">Your Message</label>
-						<p className={isError.message ? "visible" : ""}></p>
+						<div className="label-container">
+							<label htmlFor="your-mesage">Your Message</label>
+							<p className={isError.message ? "visible" : ""}></p>
+						</div>
 						<textarea
 							type="text"
 							name="message"
@@ -130,8 +137,9 @@ export default function Contact() {
 							Submit Message
 						</button>
 					</div>
-				</div>
-			</form>
+					{/* </div> */}
+				</form>
+			</div>
 		</div>
 	);
 }

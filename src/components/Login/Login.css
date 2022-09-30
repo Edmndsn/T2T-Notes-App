@@ -116,11 +116,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	gap: 10px;
+	/* gap: 10px; */
 }
 
 .form-element p {
-	/* font-size: 13px; */
+	font-size: 13px;
 	color: #ec7160;
 	font-style: italic;
 	opacity: 0;
@@ -133,6 +133,7 @@
 
 .form-element label {
 	margin-bottom: 5px;
+	margin-right: 10px;
 	color: #696f79;
 }
 
@@ -186,7 +187,16 @@
 	.sign-up {
 		gap: 0.5rem;
 	}
+	.form-element label {
+		font-size: 0.7rem;
+	}
 	.form-element p {
 		font-size: 0.6rem;
+	}
+	.form-element input {
+		font-size: 0.7rem;
+	}
+	.submit-message-button {
+		font-size: 0.7rem;
 	}
 }

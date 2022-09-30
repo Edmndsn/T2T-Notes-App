@@ -6,16 +6,24 @@ import googleLogo from "../../images/google-logo.svg";
 import facebookLogo from "../../images/facebook-logo.svg";
 import "./Login.css";
 import { useAuth } from "../Context/AuthContext";
+// import {
+// 	signInWithEmailAndPassword,
+// 	setPersistence,
+// 	browserSessionPersistence,
+// 	onAuthStateChanged,
+// 	signInWithPopup,
+// } from "firebase/auth";
+// import { auth, gProvider, fProvider } from "../../firebase-config";
 
 export default function Login() {
-	const { login } = useAuth();
+	const { login, signInFacebook, handleGoogle } = useAuth();
 	const navigate = useNavigate();
 
 	const [details, setDetails] = useState({
 		email: "",
 		password: "",
 	});
-	// const [loading, setLoading] = useState(false);
+	// ADD GOOGLE AND FACEBOOK SIGNUP!!!!!
 
 	const [errorMessage, setErrorMessage] = useState("");
 
@@ -49,6 +57,36 @@ export default function Login() {
 		}
 	}
 
+	// function handleGoogle(e) {
+	// 	e.preventDefault();
+	// 	signInWithPopup(auth, provider)
+	// 		.then((cred) => {
+	// 			console.log(cred);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }
+
+	// function handleGoogle(e) {
+	// 	e.preventDefault();
+	// 	signInWithPopup(auth, gProvider)
+	// 		.then((cred) => {
+	// 			sessionStorage.setItem("Auth Token", auth.currentUser.accessToken);
+	// 			sessionStorage.setItem("uid", auth.currentUser.uid);
+	// 			sessionStorage.setItem("email", auth.currentUser.email);
+	// 			navigate("/");
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }
+
+	function handleFacebook(e) {
+		e.preventDefault();
+		signInFacebook(e);
+	}
+
 	return (
 		<div className="login-container">
 			<div className="image-half">
@@ -63,12 +101,12 @@ export default function Login() {
 			<div className="form-half">
 				<div className="form-container">
 					<h2 className="login-title">Account Login</h2>
-					<form className="login-form">
-						<button className="account-button">
+					<form className="login-form" onSubmit={handleSubmit}>
+						<button className="account-button" onClick={handleGoogle}>
 							<img src={googleLogo} alt="google" />
 							Google Account
 						</button>
-						<button className="account-button">
+						<button className="account-button" onClick={handleFacebook}>
 							<img src={facebookLogo} alt="facebook" />
 							Facebook Account
 						</button>
@@ -123,79 +161,5 @@ export default function Login() {
 				</div>
 			</div>
 		</div>
-
-		// <div className="login-container">
-		//   <div className="login-left">
-		//     <img className="app-logo" src={appLogo} alt="" />
-		//     <img className="main-login-image" src={mainLoginImage} alt="" />
-		//   </div>
-		//   <div className="login-right">
-		//     <div className="login-right-contents">
-		//       <h1 className="span-two">Account Login</h1>
-		//       <form className="auth-form">
-		//         <button className="account-button" onClick={handleSubmit}>
-		//           <img src={googleLogo} alt="google" />
-		//           Google Account
-		//         </button>
-		//         <button className="account-button">
-		//           <img src={facebookLogo} alt="facebook" />
-		//           Facebook Account
-		//         </button>
-		//         <div className="divider">
-		//           <p>Or</p>
-		//         </div>
-		//         <div className="form-element span-two">
-		//           <div className="label-container">
-		//             <label htmlFor="email">Email</label>
-		//             <p
-		//               className={`${
-		//                 errorMessage === "User not found" ? "visible" : ""
-		//               }`}
-		//             >
-		//               {errorMessage}
-		//             </p>
-		//           </div>
-		//           <input
-		//             className="span-two"
-		//             type="text"
-		//             name="email"
-		//             id="email"
-		//             value={details.email}
-		//             onChange={handleChange}
-		//             required
-		//           ></input>
-		//         </div>
-		//         <div className="form-element span-two">
-		//           <div className="label-container">
-		//             <label htmlFor="password">Password</label>
-		//             <p
-		//               className={`${
-		//                 errorMessage === "Wrong Password" ? "visible" : ""
-		//               }`}
-		//             >
-		//               {errorMessage}
-		//             </p>
-		//           </div>
-		//           <input
-		//             className="span-two"
-		//             type="password"
-		//             name="password"
-		//             id="password"
-		//             value={details.password}
-		//             onChange={handleChange}
-		//             required
-		//           ></input>
-		//         </div>
-
-		//         <button className="login-button span-two" onClick={handleSubmit}>
-		//           Login
-		//         </button>
-		//       </form>
-		//       <p className="sign-up">
-		//         Don't have an account?&nbsp;<Link to="/signup">Sign up here</Link>
-		//       </p>
-		//     </div>
-		//   </div>
-		// </div>
 	);
 }

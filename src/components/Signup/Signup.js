@@ -5,10 +5,12 @@ import logo from "../../images/logo.svg";
 import googleLogo from "../../images/google-logo.svg";
 import facebookLogo from "../../images/facebook-logo.svg";
 import "./Signup.css";
+// import { signInWithPopup } from "firebase/auth";
+// import { auth, gProvider, fProvider } from "../../firebase-config";
 import { useAuth } from "../Context/AuthContext.js";
 
 export default function Signup() {
-	const { signup } = useAuth();
+	const { signup, signInFacebook, handleGoogle } = useAuth();
 	const navigate = useNavigate();
 	const [details, setDetails] = useState({
 		email: "",
@@ -63,6 +65,33 @@ export default function Signup() {
 			}
 	}
 
+	// async function handleFacebook(e) {
+	// 	e.preventDefault();
+	// 	await signInWithPopup(auth, fProvider)
+	// 		.then((cred) => {
+	// 			console.log(cred);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }
+	// async function handleFacebook(e) {
+	// 	e.preventDefault();
+	// 	signInWithPopup(auth, fProvider)
+	// 		.then((result) => {
+	// 			const user = result.user;
+	// 			const credential = fProvider.credentialFromResult(result);
+	// 			const accessToken = credential.accessToken;
+	// 		})
+	// 		.catch((error) => {
+	// 			// const errorCode = error.code;
+	// 			// // const errorMessage = error.message;
+	// 			// const email = error.customData.email;
+	// 			// const credential = fProvider.credentialFromError(error);
+	// 			// ...
+	// 		});
+	// }
+
 	return (
 		<div className="login-container">
 			<div className="image-half">
@@ -82,13 +111,13 @@ export default function Signup() {
 						If you are already a member you can log in with your email address
 						and password.
 					</label>
-					<form className="login-form">
-						<button className="account-button">
+					<form className="login-form" onSubmit={handleSubmit}>
+						<button className="account-button" onClick={handleGoogle}>
 							<img src={googleLogo} alt="google" />
 							Google Account
 						</button>
 						<button className="account-button">
-							<img src={facebookLogo} alt="facebook" />
+							<img src={facebookLogo} alt="facebook" onClick={signInFacebook} />
 							Facebook Account
 						</button>
 						<div className="divider">
