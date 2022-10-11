@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.76d123af.css",
+    "main.js": "/static/js/main.d14beb08.js",
+    "static/js/787.28cb0dcd.chunk.js": "/static/js/787.28cb0dcd.chunk.js",
+    "static/media/home.svg": "/static/media/home.404d47faf7889239b6ce7c192bca3a65.svg",
+    "static/media/signup-image.svg": "/static/media/signup-image.b05449e2dd07ed3d8a0ed4329322abfe.svg",
+    "static/media/login-image.svg": "/static/media/login-image.37d9fadc75ef127d76b15760d9d2a351.svg",
+    "static/media/app-logo.svg": "/static/media/app-logo.f2ae6a2c9232009ada8577cdc9b45a4e.svg",
+    "static/media/logo.svg": "/static/media/logo.da0abe328caeeaf9f57de3384254494c.svg",
+    "static/media/google-logo.svg": "/static/media/google-logo.7da490176f6498cb482720f0f01fa671.svg",
+    "index.html": "/index.html",
+    "static/media/facebook-logo.svg": "/static/media/facebook-logo.574de93676b020161fc1949d4829a98d.svg",
+    "static/media/chevron.svg": "/static/media/chevron.57e9cd5fdc4b683e9463f397644ea959.svg",
+    "static/media/menu.svg": "/static/media/menu.fd7df775fdeb9a4a05d44cc13b7a1182.svg",
+    "main.76d123af.css.map": "/static/css/main.76d123af.css.map",
+    "main.d14beb08.js.map": "/static/js/main.d14beb08.js.map",
+    "787.28cb0dcd.chunk.js.map": "/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76d123af.css",
+    "static/js/main.d14beb08.js"
+  ]
+}
