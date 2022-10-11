@@ -117,8 +117,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* gap: 10px; */
 }
 
 .form-element p {
@@ -140,7 +138,6 @@
 }
 
 .form-element input {
-  /* grid-column: span 2; */
   width: 100%;
   padding: 10px;
   background-color: #ffffff;
@@ -150,6 +147,7 @@
 
 .form-element input:focus-visible {
   outline: 1px solid #898989;
+  border-radius: 7px;
 }
 
 .login-button {
