@@ -1,57 +1,57 @@
 .home-container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
 }
 
 .home-content {
-	max-width: 600px;
-	max-height: 600px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	text-align: center;
-	margin: 20px;
+  max-width: 600px;
+  max-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 20px;
 }
 
 .home-content h2 {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .home-content p {
-	line-height: 27px;
+  line-height: 27px;
 }
 
 .home-media {
-	max-width: 290px;
+  max-width: 290px;
 }
 
 .highlight {
-	color: #ec7160;
-	display: inline-block;
-	animation: slide-animation-home 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.2s
-		forwards;
-	opacity: 0;
+  color: #ec7160;
+  display: inline-block;
+  animation: slide-animation-home 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.2s
+    forwards;
+  opacity: 0;
 }
 
 .navto-notes-button {
-	height: 40px;
-	background: #ec7160;
-	color: white;
-	margin: 25px;
+  height: 40px;
+  background: #ec7160;
+  color: white;
+  margin: 25px;
 }
 
 @keyframes slide-animation-home {
-	from {
-		transform: translateY(30px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

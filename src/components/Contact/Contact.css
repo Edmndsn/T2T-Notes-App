@@ -1,58 +1,60 @@
 .contact-page {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contact-container {
-	width: 100%;
-	padding: 1rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: nowrap;
-	gap: 2rem;
-	margin-bottom: 5rem;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  margin-bottom: 5rem;
 }
 
 .login-form {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  max-width: 700px;
+  width: 100%;
 }
 
 .contact-container h2 {
-	margin: 0px;
+  margin: 0px;
 }
 
 .contact-container > .form-element p.visible {
-	font-size: 13px;
+  font-size: 13px;
 }
 
 .form-element textarea {
-	width: 100%;
-	height: 100%;
-	grid-row: span 2;
-	background-color: #f6f6f6;
-	border-radius: 7px;
-	border: none;
-	padding: 10px;
+  width: 100%;
+  height: 100%;
+  grid-row: span 2;
+  background-color: #f6f6f6;
+  border-radius: 7px;
+  border: none;
+  padding: 10px;
 }
 
 textarea:focus-visible {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 
 .span-two {
-	grid-column: span 2;
+  grid-column: span 2;
 }
 
 .submit-message-button {
-	background-color: #ec7160;
-	color: white;
-	width: 100%;
-	margin-top: 1rem;
+  background-color: #ec7160;
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
 }

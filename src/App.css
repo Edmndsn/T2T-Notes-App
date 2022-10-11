@@ -1,38 +1,59 @@
 * {
-	box-sizing: border-box;
-	font-family: "Inter";
+  box-sizing: border-box;
+  font-family: "Inter";
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
 }
 
 button:focus {
-	outline: none;
+  outline: none;
 }
 
 button {
-	border-radius: 7px;
-	padding: 1rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	border: none;
+  border-radius: 7px;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
 }
 
 .app {
-	display: flex;
-	height: 100vh;
-	width: 100vw;
-	overflow-y: auto;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 100px;
+  scrollbar-width: thin;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #e7e7e9;
+  margin-top: 1rem;
 }
 
 @media only screen and (max-width: 860px) {
-	.app {
-		display: flex;
-		flex-direction: column;
-	}
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
 }

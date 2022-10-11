@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
 
 export default function RequireAuth(props) {
-	const { currentUser } = useAuth();
+  const { currentUser } = useAuth();
 
-	if (!currentUser) {
-		return <Navigate to="/login" />;
-	}
+  if (!currentUser) {
+    return <Navigate to="/login" />;
+  }
 
-	return props.children;
+  return props.children;
 }

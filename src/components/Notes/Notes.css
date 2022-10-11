@@ -1,146 +1,139 @@
 .split {
-	display: flex;
-	width: 100%;
-	flex-shrink: 1rem;
-	height: 100%;
-	overflow: hidden;
+  display: flex;
+  width: 100%;
+  flex-shrink: 1rem;
+  height: 100%;
+  overflow: hidden;
 }
 
 .no-notes {
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-color: whitesmoke;
-	width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  width: 100%;
 }
 
 .first-note {
-	background-color: #4a4e74;
-	color: white;
+  background-color: #4a4e74;
+  color: white;
 }
 
 .pane-editor {
-	/* min-width: 100%; */
-	height: 100%;
-	overflow-y: scroll;
+  height: 100%;
+  width: 100%;
 }
 
-.top-container {
-	/* width: 30%;
-	padding: 1rem;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	gap: 10px; */
-}
 .title-change {
-	margin-top: 5px;
-	margin-left: 1rem;
-	border: none;
-	border-radius: 7px;
-	padding: 0.5rem 1rem;
-	/* outline: 2px solid #ec7160; */
-	/* background-color: #ec7160; */
-	background: rgb(236, 113, 96, 0.5);
-	color: white;
-	/* font-size: 0.9rem; */
-	/* width: 19.5%; */
-	width: 157px;
-	/* font-weight: 400; */
+  margin-top: 5px;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 7px;
+  padding: 0.5rem 1rem;
+  background: rgb(236, 113, 96, 0.5);
+  color: white;
+  width: 157px;
 }
+
 .title-change::placeholder {
-	color: white;
+  color: white;
 }
+
 .title-change:focus-visible {
-	/* outline: 2px solid #ec7160; */
-	outline: none;
+  outline: none;
 }
 
 .react-mde {
-	border: none;
+  border: none;
 }
+
 .mde-header ul.mde-header-group.hidden {
-	display: none;
+  display: none;
 }
 
 .mde-header {
-	background-color: white;
-	border-bottom: 2px solid #e7e7e9;
-	padding: 0px 10px 10px;
-	width: 100%;
-	display: flex;
-	align-items: center;
+  background-color: white;
+  border-bottom: 2px solid #e7e7e9;
+  padding: 0px 10px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .mde-header .mde-tabs button {
-	background-color: #ec7160;
-	color: white;
-	height: 20px;
-	border-radius: 7px;
-	padding: 1rem;
+  background-color: #ec7160;
+  color: white;
+  height: 20px;
+  border-radius: 7px;
+  padding: 1rem;
 }
 
 .mde-tabs > button.selected {
-	color: white;
-	background-color: rgb(236, 113, 96, 0.5);
+  color: white;
+  background-color: rgb(236, 113, 96, 0.5);
 }
 
 .mde-text {
-	outline: none;
-	border: none;
-	resize: none !important;
+  outline: none;
+  border: none;
+  resize: none !important;
 }
 
 .mde-textarea-wrapper,
 .mde-preview {
-	padding: 0px 10px;
+  padding-left: 10px;
 }
 
 textarea.mde-text:focus-visible {
-	outline: none;
+  outline: none;
 }
 
 .mde-textarea-wrapper textarea.mde-text,
 .mde-preview p {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 .mde-textarea-wrapper textarea.mde-text {
-	color: #898989;
+  color: #898989;
+  padding: 0px 0px 10px 10px;
+  margin-top: 10px;
 }
 
 .chevron {
-	padding: 0.25rem;
-	min-width: 25px;
-	border-radius: 50px;
-	background-color: white;
-	border: 2px solid #d2d2d2;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transform: rotate(180deg);
-	margin-bottom: 0.6rem;
-	margin: 0.6rem 1rem 0px;
+  padding: 0.25rem;
+  min-width: 25px;
+  border-radius: 50px;
+  background-color: white;
+  border: 2px solid #d2d2d2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(180deg);
+  margin-bottom: 0.6rem;
+  margin: 0.6rem 1rem 0px;
 }
 
 .chevron:hover {
-	background-color: rgb(236, 113, 96, 0.5);
+  background-color: rgb(236, 113, 96, 0.5);
 }
 
 .chevron img {
-	width: 100%;
-	transition: transform 0.5s ease-in-out;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
 }
 
 .chevron img.closed {
-	transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 @media only screen and (max-width: 560px) {
-	.mde-textarea-wrapper textarea.mde-text,
-	.mde-preview p {
-		font-size: 0.7rem;
-	}
+  .mde-textarea-wrapper textarea.mde-text {
+    padding: 0px;
+  }
+  .mde-textarea-wrapper textarea.mde-text,
+  .mde-preview p {
+    font-size: 0.7rem;
+  }
 }
