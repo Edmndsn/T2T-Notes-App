@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h2>Welcome to the Text to Typescript Note-App</h2>
+        <h2>Welcome to the Text to Markdown Note-App</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at arcu
           dui. Lorem ipsum dolor sit amet, consectetur adipisce placerat mauris
